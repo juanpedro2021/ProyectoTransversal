@@ -9,6 +9,6 @@ package universidaddeejemplo.AccesoADatos;
  *
  * @author lau-d
  */
-public class NewClass {
+public class Conexion {
     
 }
