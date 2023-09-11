@@ -1,5 +1,5 @@
 
-package universidaddeejemplo.AccesoADatos;
+package ulp.AccesoADatos;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -1,5 +1,5 @@
 
-package univesidadejemplo.Entidades;
+package ulp.Entidades;
 
 
 public class Inscripcion {

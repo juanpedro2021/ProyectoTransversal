@@ -1,8 +1,8 @@
-package universidaddeejemplo.AccesoADatos;
+package ulp.AccesoADatos;
 
-//import universidadejemplo.Entidades.Alumno;
-//VER ESTO
-//import uunivesidadejemplo.Entidades;
+import ulp.Entidades.Alumno;
+//import univesidadejemplo.Entidades.Alumno;
+
 import java.sql.Connection;
 public class AlumnoData {
   

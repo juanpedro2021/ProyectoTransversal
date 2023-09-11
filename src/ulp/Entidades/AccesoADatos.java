@@ -1,6 +1,6 @@
-package universidadejemplo.AccesoADatos;
+package ulp.Entidades;
 
-import universidadejemplo.Entidades.Alumno;
+import ulp.Entidades.Alumno;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
