@@ -97,11 +97,32 @@ public Materia buscarMateria(int id){
 		return materia;
 		}
 
+public void modificarMateria (Materia materia) {
+	
+	String sql = "UPDATE materia SET nombre = ?, añoMateria = ?, activo = ? WHERE idMateria = ?";
+	PreparedStatement ps = null;
+
+	try {
+		ps = con.prepareStatement(sql);
+		ps.setString(1, materia.getNombre());
+		ps.setInt(2, materia.getAñoMateria());
+		ps.setBoolean(3, materia.getActivo());
+		int exito = ps.executeUpdate();
+
+		if (exito == 1) {
+		
+		JOptionPane.showMessageDialog(null, "Modificada exitosamente");
+		} else {
+		JOptionPane.showMessageDialog(null, "La materia no existe");
+		}
+		} catch (SQLException ex) {
+		JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Materia "+ex.Message());
+		}
 
 
 
 
-
+}
 }
 
 
