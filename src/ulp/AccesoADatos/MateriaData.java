@@ -1,6 +1,8 @@
 
 package ulp.AccesoADatos;
 
+
+
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -40,13 +42,15 @@ public class MateriaData {
     }
 
 
-public class MateriaData {
-	private Connection con = null;
-	
-	public MateriaData(){
-
-	con = Conexion.getConexion();
-        }
+//public class MateriaData() {
+//	private Connection con = null;
+//	
+//	public MateriaData(){
+//
+//	con = Conexion.getConexion();
+//        }
+        
+        
 
 public void guardarMateria (Materia materia) {
 	
@@ -80,7 +84,7 @@ public Materia buscarMateria(int id){
 
 		ResultSet rs = ps.executeQuery();
 
-		if (rs.next) {
+		if (rs.next()){
 		materia=new Materia();
 		materia.setIdMateria(id);
                 materia.setNombre("nombre");
@@ -99,14 +103,17 @@ public Materia buscarMateria(int id){
 
 public void modificarMateria (Materia materia) {
 	
-	String sql = "UPDATE materia SET nombre = ?, añoMateria = ?, activo = ? WHERE idMateria = ?";
+	String sql = "UPDATE materia SET nombre=?,año=?,estado= ? WHERE idMateria=?";
 	PreparedStatement ps = null;
 
 	try {
 		ps = con.prepareStatement(sql);
 		ps.setString(1, materia.getNombre());
 		ps.setInt(2, materia.getAñoMateria());
-		ps.setBoolean(3, materia.getActivo());
+		ps.setBoolean(3, materia.isActivo());
+              
+
+              
 		int exito = ps.executeUpdate();
 
 		if (exito == 1) {
@@ -116,7 +123,7 @@ public void modificarMateria (Materia materia) {
 		JOptionPane.showMessageDialog(null, "La materia no existe");
 		}
 		} catch (SQLException ex) {
-		JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Materia "+ex.Message());
+		JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Materia "+ex.getMessage());
 		}
 
 

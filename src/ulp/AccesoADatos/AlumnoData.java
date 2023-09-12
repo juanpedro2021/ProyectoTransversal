@@ -56,7 +56,7 @@ public Alumno buscarAlumno(int id){//Video 5 Mercado. 0.10
 
 		ResultSet rs = ps.executeQuery();
 
-		if (rs.next) {
+		if (rs.next()) {
 		alumno=new Alumno();//acá uso el construct vacío de Alumno
 		alumno.setIdAlumno(id);
 		alumno.setDni(rs.getInt("dni"));
@@ -103,7 +103,7 @@ public Alumno buscarAlumno(int id){//Video 5 Mercado. 0.10
 
 		ResultSet rs = ps.executeQuery();
 
-		if (rs.next) {
+		if (rs.next()) {
 		alumno=new Alumno();
 		alumno.setIdAlumno(rs.getInt("idAlumno"));
 		alumno.setDni(rs.getInt("dni"));
