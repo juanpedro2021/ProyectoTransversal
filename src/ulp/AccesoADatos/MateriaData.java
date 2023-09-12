@@ -16,25 +16,16 @@ import ulp.Entidades.Materia;
 
 
 public class MateriaData {
-    private Connection con = null;
-	
+    
+private Connection con = null;
+
+	//creo el constructor
+
 	public MateriaData(){
 
 	con = Conexion.getConexion();
-        }
-
- 
-
-
-//public class MateriaData() {
-//	private Connection con = null;
-//	
-//	public MateriaData(){
-//
-//	con = Conexion.getConexion();
-//        }
-        
-        
+    }
+   
 
 public void guardarMateria (Materia materia) {
 	
@@ -112,7 +103,55 @@ public void modificarMateria (Materia materia) {
 
 }
 
-}
+    public void eliminarMateria(int id){
+         
+         String sql ="update Materia set estado =0 where idMateria=?";
+     try {
+         
+         PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+       
+         
+         ps.setInt(1, id);
+         
+         int exito =ps.executeUpdate();
+         
+           if (exito ==1){
+        JOptionPane.showMessageDialog(null, "Materia borrada"); 
+    }
+     } catch (SQLException ex) {
+          JOptionPane.showMessageDialog(null, "erro al acceder a la tabla materia"); 
+     }
+ 
+     }
+    
+    public List<Materia> listarMaterias(){
+ 
+    String sql ="SELECT `idMateria`, `nombre`, `año`, `estado` FROM `materia` WHERE  estado=1";
+    
+    ArrayList<Materia> materias = new ArrayList<>();
+         
+     try {
 
+         PreparedStatement ps = con.prepareStatement(sql);
+                      
+         ResultSet rs =ps.executeQuery();
+         while (rs.next()) {
+             
+       Materia materia = new Materia();
+           materia.setIdMateria(rs.getInt("id"));
+           materia.setNombre((rs.getString("nombre")));
+           materia.setAñoMateria(rs.getInt("año"));
+           materia.setActivo(true);
+           
+          materias.add(materia);
+         }
+         ps.close();
+         
+     } catch (SQLException ex) {
+         JOptionPane.showMessageDialog(null, "error al acceder a la tabla alumno"); 
+     }
+     return materias;
+ }
+}
 
 
