@@ -8,19 +8,57 @@ public class Materia {
     private int añoMateria;
     private boolean activo;
 
+    public Materia(int idMateria, String nombre, int añoMateria, boolean activo) {
+        this.idMateria = idMateria;
+        this.nombre = nombre;
+        this.añoMateria = añoMateria;
+        this.activo = activo;
+    }
+
+    public Materia(String nombre, int añoMateria, boolean activo) {
+        this.nombre = nombre;
+        this.añoMateria = añoMateria;
+        this.activo = activo;
+    }
+
+    public int getIdMateria() {
+        return idMateria;
+    }
+
+    public void setIdMateria(int idMateria) {
+        this.idMateria = idMateria;
+    }
+
     public String getNombre() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public int getAñoMateria() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return añoMateria;
+    }
+
+    public void setAñoMateria(int añoMateria) {
+        this.añoMateria = añoMateria;
     }
 
     public boolean isActivo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return activo;
     }
 
-    public void setIdMateria(int aInt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
+
+    @Override
+    public String toString() {
+        return "Materia{" + "idMateria=" + idMateria + ", nombre=" + nombre + ", a\u00f1oMateria=" + añoMateria + ", activo=" + activo + '}';
+    }
+    
+    
+
+   
 }
