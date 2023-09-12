@@ -21,6 +21,10 @@ public class Materia {
         this.activo = activo;
     }
 
+    public Materia() {
+       
+    }
+
     public int getIdMateria() {
         return idMateria;
     }
