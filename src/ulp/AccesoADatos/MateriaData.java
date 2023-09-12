@@ -130,6 +130,32 @@ public void modificarMateria (Materia materia) {
 
 
 }
+public List <Materia> obtenerMateriasCursadas(int id) {
+	
+	List<Materia> materias = new ArrayList<Materia>();
+	
+	try{
+		String sql = "SELECT inscripcion.idMateria, nombre, año FROM inscripcion, materia WHERE inscripcion.idMateria = materia.idMateria\n AND inscripcion.idAlumno = ?;" ;
+		PreparatedStatement ps = (PreparatedStatement) con.prepareStatement(sql);
+		ps.setInt(1, id);
+		ResultSet rs = ps.executeQuery();
+		Materia materia;
+
+		while (rs.next()) {
+			materia = new Materia();
+			materia.setIdMateria(rs.getInt("idMateria"));
+			materia.setNombre(rs.getString("nombre"));
+			materia.setAñoMateria(rs.getInt("año"));
+			materia.add(materia);
+		}
+		ps.close ();
+
+	 	} catch (SQLException ex) {
+			JOptionPane.showMessageDialog(null, "Error al obtener inscripciones"+ex.getMessage());
+		}
+		return materias;
+		}
+
 }
 
 
