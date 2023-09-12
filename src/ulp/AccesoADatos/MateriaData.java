@@ -151,6 +151,7 @@ public void modificarMateria (Materia materia) {
          JOptionPane.showMessageDialog(null, "error al acceder a la tabla alumno"); 
      }
      return materias;
+     
  }
 }
 
