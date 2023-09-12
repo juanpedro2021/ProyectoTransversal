@@ -153,6 +153,33 @@ public Alumno buscarAlumno(int id){//Video 5 Mercado. 0.10
 		return alumnos;
 		}
     
+  public void modificarAlumno (Alumno alumno) {// 21.10 Video 4 de Mercado (un nuevo Método en AlumnoData)
+	
+	String sql = "UPDATE alumno SET dni = ?, apellido = ?, nombre = ?, fechaNacimiento = ? WHERE idAlumno = ?";
+	PreparedStatement ps = null;
+
+	try {
+		ps = con.prepareStatement(sql);
+		ps.setInt(1, alumno.getDni());
+		ps.setString(2, alumno.getApellido());
+		ps.setString(3, alumno.getNombre());
+		ps.setDate(4, Date.valueOf(alumno.getFechaNac()));
+		ps.setInt(5, alumno.getIdAlumno());
+		int exito = ps.executeUpdate();
+
+		if (exito == 1) {
+		
+		JOptionPane.showMessageDialog(null, "Modificado exitosamente"); //28.07 en Video 4 de Mercado. En 28.30 prueba con un cambio
+		} else {
+		JOptionPane.showMessageDialog(null, "El alumno no existe");
+		}
+		} catch (SQLException ex) {
+		JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno "+ex.Message());
+		}
+		}
+
+
+
 }
 
 
