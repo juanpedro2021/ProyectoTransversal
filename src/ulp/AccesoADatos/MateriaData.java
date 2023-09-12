@@ -23,23 +23,7 @@ public class MateriaData {
 	con = Conexion.getConexion();
         }
 
-    private static class PreparatedStatement {
-
-        public PreparatedStatement() {
-        }
-
-        private void setInt(int i, int id) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
-
-        private ResultSet executeQuery() {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
-
-        private void close() {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
-    }
+ 
 
 
 //public class MateriaData() {
@@ -72,14 +56,14 @@ public void guardarMateria (Materia materia) {
 		JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Materia"+ex.getMessage());
 		}
 		}
-}
+
 
 public Materia buscarMateria(int id){
 	Materia materia = null;
 	String sql = "SELECT nombre, añoMateria FROM materia WHERE idMateria = ? AND activo = 1";
-	PreparatedStatement ps = null;
+	PreparedStatement ps = null;
 	try {
-		ps = (PreparatedStatement) con.prepareStatement(sql);
+		ps = (PreparedStatement) con.prepareStatement(sql);
 		ps.setInt(1, id);
 
 		ResultSet rs = ps.executeQuery();
@@ -126,35 +110,7 @@ public void modificarMateria (Materia materia) {
 		JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Materia "+ex.getMessage());
 		}
 
-
-
-
 }
-public List <Materia> obtenerMateriasCursadas(int id) {
-	
-	List<Materia> materias = new ArrayList<Materia>();
-	
-	try{
-		String sql = "SELECT inscripcion.idMateria, nombre, año FROM inscripcion, materia WHERE inscripcion.idMateria = materia.idMateria\n AND inscripcion.idAlumno = ?;" ;
-		PreparatedStatement ps = (PreparatedStatement) con.prepareStatement(sql);
-		ps.setInt(1, id);
-		ResultSet rs = ps.executeQuery();
-		Materia materia;
-
-		while (rs.next()) {
-			materia = new Materia();
-			materia.setIdMateria(rs.getInt("idMateria"));
-			materia.setNombre(rs.getString("nombre"));
-			materia.setAñoMateria(rs.getInt("año"));
-			materia.add(materia);
-		}
-		ps.close ();
-
-	 	} catch (SQLException ex) {
-			JOptionPane.showMessageDialog(null, "Error al obtener inscripciones"+ex.getMessage());
-		}
-		return materias;
-		}
 
 }
 
