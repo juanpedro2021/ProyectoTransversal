@@ -174,7 +174,7 @@ public Alumno buscarAlumno(int id){//Video 5 Mercado. 0.10
 		JOptionPane.showMessageDialog(null, "El alumno no existe");
 		}
 		} catch (SQLException ex) {
-		JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno "+ex.Message());
+		JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno "+ex.getMessage());
 		}
 		}
 
@@ -191,7 +191,7 @@ public void eliminarAlumno(int id) {
 		}
 		ps.close();
 		} catch (SQLException ex) {
-		JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno ");
+		JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno "+ ex.getMessage());
 		}
 	}
 }
