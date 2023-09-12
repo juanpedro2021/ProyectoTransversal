@@ -21,6 +21,24 @@ public class MateriaData {
 	con = Conexion.getConexion();
         }
 
+    private static class PreparatedStatement {
+
+        public PreparatedStatement() {
+        }
+
+        private void setInt(int i, int id) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        private ResultSet executeQuery() {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        private void close() {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+    }
+
 
 public class MateriaData {
 	private Connection con = null;
@@ -51,6 +69,38 @@ public void guardarMateria (Materia materia) {
 		}
 		}
 }
+
+public Materia buscarMateria(int id){
+	Materia materia = null;
+	String sql = "SELECT nombre, añoMateria FROM materia WHERE idMateria = ? AND activo = 1";
+	PreparatedStatement ps = null;
+	try {
+		ps = (PreparatedStatement) con.prepareStatement(sql);
+		ps.setInt(1, id);
+
+		ResultSet rs = ps.executeQuery();
+
+		if (rs.next) {
+		materia=new Materia();
+		materia.setIdMateria(id);
+                materia.setNombre("nombre");
+		materia.setAñoMateria(rs.getInt("añoMateria"));
+		materia.setActivo(true);
+		
+		} else {
+			JOptionPane.showMessageDialog(null, "No existe la materia");
+		}
+		ps.close();
+		} catch (SQLException ex) {
+			JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Materia "+ex.getMessage());
+		}
+		return materia;
+		}
+
+
+
+
+
 
 }
 
