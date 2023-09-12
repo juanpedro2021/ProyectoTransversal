@@ -93,6 +93,36 @@ public Alumno buscarAlumno(int id){//Video 5 Mercado. 0.10
         }
     }
 
+  public Alumno buscarAlumnoPorDni(int dni){ //Video 5 Mercado 12.00
+	Alumno alumno = null;
+	String sql = "SELECT idAlumno, dni, apellido, nombre, fechaNacimiento FROM alumno WHERE dni = ? AND estado = 1";
+	PreparatedStatement ps = null;
+	try {
+		ps = (PreparatedStatement) con.prepareStatement(sql);
+		ps.setInt(1, dni);
+
+		ResultSet rs = ps.executeQuery();
+
+		if (rs.next) {
+		alumno=new Alumno();
+		alumno.setIdAlumno(rs.getInt("idAlumno"));
+		alumno.setDni(rs.getInt("dni"));
+		alumno.setApellido(rs.getString("apellido"));
+		alumno.setNombre(rs.getString("nombre"));
+		alumno.setFechaNac(rs.getDate("fechaNacimiento").toLocalDate());
+		alumno.setActivo(true);
+		
+		} else {
+			JOptionPane.showMessageDialog(null, "No existe el alumno");
+		}
+		ps.close();
+		} catch (SQLException ex) {
+			JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno "+ex.getMessage());
+		}
+		return alumno;
+		}  
+    
+    
 }
 
 
