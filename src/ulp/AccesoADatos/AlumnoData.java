@@ -45,6 +45,54 @@ public void guardarAlumno (Alumno alumno) {
 		JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno"+ex.getMessage());
 		}
 		}
+
+public Alumno buscarAlumno(int id){//Video 5 Mercado. 0.10
+	Alumno alumno = null;
+	String sql = "SELECT dni, apellido, nombre, fechaNacimiento FROM alumno WHERE idAlumno = ? AND estado = 1";
+	PreparatedStatement ps = null;
+	try {
+		ps = (PreparatedStatement) con.prepareStatement(sql);
+		ps.setInt(1, id);
+
+		ResultSet rs = ps.executeQuery();
+
+		if (rs.next) {
+		alumno=new Alumno();//acá uso el construct vacío de Alumno
+		alumno.setIdAlumno(id);
+		alumno.setDni(rs.getInt("dni"));
+		alumno.setApellido(rs.getString("apellido"));
+		alumno.setNombre(rs.getString("nombre"));
+		alumno.setFechaNac(rs.getDate("fechaNacimiento").toLocalDate());
+		alumno.setActivo(true); // en 7.25 explica esto
+		
+		} else {
+			JOptionPane.showMessageDialog(null, "No existe el alumno");
+		}
+		ps.close();
+		} catch (SQLException ex) {
+			JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno "+ex.getMessage());
+		}
+		return alumno;
+		}
+
+    private static class PreparatedStatement {
+
+        public PreparatedStatement() {
+        }
+
+        private ResultSet executeQuery() {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        private void close() {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        private void setInt(int i, int id) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+    }
+
 }
 
 
