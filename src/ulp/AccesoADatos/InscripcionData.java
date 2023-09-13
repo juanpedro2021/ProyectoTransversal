@@ -100,5 +100,29 @@ public void actualizarNota(int idAlumno, int idMateria, double nota){ //video 6 
 		return materias;
 		}
 
+     public void eliminarInscripcion(int idAlumno,int idMateria){
+         
+         String sql ="delete from inscripcion where idAlumno =? and idMateria=?";
+     try {
+         
+         PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+       
+         
+         ps.setInt(1, idAlumno);
+         ps.setInt(2, idMateria);
+         
+         int filas=ps.executeUpdate();
+         
+           if (filas>0){
+        JOptionPane.showMessageDialog(null, "inscripcion  borrada"); 
+    }
+     } catch (SQLException ex) {
+          JOptionPane.showMessageDialog(null, "erro al acceder a la tabla inscripcion"); 
+     }
+ 
+
+}
+
+
 
 }
