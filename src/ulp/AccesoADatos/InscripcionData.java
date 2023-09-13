@@ -46,13 +46,14 @@ public void guardarInscripcion(Inscripcion ins){
                   if (rs.next()) {
                     ins.setIdInscripcion(rs.getInt(1));
                         JOptionPane.showMessageDialog(null, "incripcion agregada con exito"); 
-       }             
-         } catch (SQLException ex) {
+             } 
+                 ps.close();
+             } catch (SQLException ex) {
         JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion"+ex.getMessage()); 
 
          }
 }
-public void actualizarNota(int idAlumno, int idMateria, double nota){
+public void actualizarNota(int idAlumno, int idMateria, double nota){ //video 6 minuto 21.55
     
     String sql = "UPDATE inscripcion SET nota = ? WHERE idAlumno=? AND idMateria = ? ";
             try {
