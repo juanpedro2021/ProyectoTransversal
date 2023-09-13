@@ -10,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -78,10 +80,27 @@ public void guardarInscripcion(Inscripcion ins){
 //		ps.close ();
 //
 //	 	} catch (SQLException ex) {
-//			JOptionPane.showMessageDialog(null, "Error al obtener inscripciones"+ex.getMessage());
+//			JOptionPane.showMessageDialog(null, "Error al obtener materias cursadas"+ex.getMessage());
 //		}
 //		return materias;
 //		}
+
+public List <Inscripcion> obtenerInscripciones(){
+    ArrayList <Inscripcion> inscripciones = new ArrayList<>();
+    
+    String sql = "SELECT * FROM inscripcion ";
+    
+            try {
+                PreparedStatement ps=con.prepareCall(sql);
+                ResultSet rs=ps.executeQuery();
+               while(rs.next()){
+                   Inscripcion ins=new Inscripcion();
+                   ins.setIdInscripcion(rs.getInt(sql));
+               } 
+            } catch (SQLException ex) {
+              JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion"+ex.getMessage());
+            }
+}
 
 public void actualizarNota(int idAlumno, int idMateria, double nota){
     
