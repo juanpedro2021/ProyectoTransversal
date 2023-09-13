@@ -23,6 +23,8 @@ import ulp.Entidades.Inscripcion;
  */
 public class InscripcionData {
         private Connection con = null;
+        private MateriaData md=new MateriaData();
+        private AlumnoData ad=new AlumnoData();
 
      //contructor
 public InscripcionData(){
@@ -91,11 +93,13 @@ public List <Inscripcion> obtenerInscripciones(){
     String sql = "SELECT * FROM inscripcion ";
     
             try {
-                PreparedStatement ps=con.prepareCall(sql);
+                PreparedStatement ps=con.prepareStatement(sql);
                 ResultSet rs=ps.executeQuery();
                while(rs.next()){
                    Inscripcion ins=new Inscripcion();
                    ins.setIdInscripcion(rs.getInt("idInscripto"));
+                   Alumno alu= ad.
+                   
                } 
             } catch (SQLException ex) {
               JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion"+ex.getMessage());
