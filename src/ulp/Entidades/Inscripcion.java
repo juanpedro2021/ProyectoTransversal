@@ -7,4 +7,6 @@ public class Inscripcion {
     private Alumno alumno;
     private Materia materia;
     private double nota;
+    
+    
 }
