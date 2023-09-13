@@ -21,7 +21,8 @@ import ulp.Entidades.Materia;
 public class InscripcionData {
  
     private Connection con = null;
-
+    private MateriaData md=new MateriaData();
+    private AlumnoData ad=new AlumnoData();
      //contructor
 public InscripcionData(){
  con = Conexion.getConexion();
@@ -52,6 +53,31 @@ public void guardarInscripcion(Inscripcion ins){
         JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion"+ex.getMessage()); 
 
          }
+}
+
+public List <Inscripcion> obtenerInscripciones(){
+    ArrayList <Inscripcion> inscripciones = new ArrayList<>();
+    
+    String sql = "SELECT * FROM inscripcion ";
+    
+            try {
+                PreparedStatement ps=con.prepareStatement(sql);
+                ResultSet rs=ps.executeQuery();
+               while(rs.next()){
+                   Inscripcion ins=new Inscripcion();
+                   ins.setIdInscripcion(rs.getInt("idInscripto"));
+                  Alumno alu=ad.buscarAlumno(rs.getInt("idAlumno"));
+                  Materia mat=md.buscarMateria(rs.getInt("idMateria"));
+                  ins.setAlumno(alu);
+                  ins.setMateria(mat);
+                  ins.setNota(rs.getDouble("nota"));
+                  inscripciones.add(ins);
+               }
+               ps.close();
+            } catch (SQLException ex) {
+              JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion"+ex.getMessage());
+            }
+            return inscripciones;
 }
 public void actualizarNota(int idAlumno, int idMateria, double nota){ //video 6 minuto 21.55
     
