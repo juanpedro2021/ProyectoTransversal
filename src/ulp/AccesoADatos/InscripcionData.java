@@ -98,7 +98,7 @@ public List <Inscripcion> obtenerInscripciones(){
                while(rs.next()){
                    Inscripcion ins=new Inscripcion();
                    ins.setIdInscripcion(rs.getInt("idInscripto"));
-                   Alumno alu= ad.
+                  
                    
                } 
             } catch (SQLException ex) {
