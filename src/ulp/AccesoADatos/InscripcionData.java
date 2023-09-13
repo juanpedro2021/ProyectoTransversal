@@ -95,7 +95,7 @@ public List <Inscripcion> obtenerInscripciones(){
                 ResultSet rs=ps.executeQuery();
                while(rs.next()){
                    Inscripcion ins=new Inscripcion();
-                   ins.setIdInscripcion(rs.getInt(sql));
+                   ins.setIdInscripcion(rs.getInt("idInscripto"));
                } 
             } catch (SQLException ex) {
               JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion"+ex.getMessage());
