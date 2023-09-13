@@ -10,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import ulp.Entidades.Inscripcion;
 
@@ -53,10 +55,8 @@ public void guardarInscripcion(Inscripcion ins){
 
          }
 
+}
 
-    
-    
-    
     //public List <Materia> obtenerMateriasCursadas(int id) {
 //	
 //	List<Materia> materias = new ArrayList<Materia>();
@@ -83,5 +83,25 @@ public void guardarInscripcion(Inscripcion ins){
 //		return materias;
 //		}
 
+public void actualizarNota(int idAlumno, int idMateria, double nota){
+    
+    String sql = "UPDATE inscripcion SET nota = ? WHERE idAlumno=? AND idMateria = ? ";
+            try {
+                PreparedStatement ps=con.prepareStatement(sql);
+                ps.setDouble(1, nota);
+                ps.setInt(2, idAlumno);
+                ps.setInt(3, idMateria);
+                int filas=ps.executeUpdate();
+                
+                if(filas>0){
+                   JOptionPane.showMessageDialog(null, "Nota actualizada");
+                }
+                ps.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(InscripcionData.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    
 }
+
+
 }
