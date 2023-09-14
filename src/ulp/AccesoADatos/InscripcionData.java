@@ -177,7 +177,7 @@ public void actualizarNota(int idAlumno, int idMateria, double nota){ //video 6 
 		return materias;
 		}
 
-     public void eliminarInscripcion(int idAlumno,int idMateria){
+     public void borrarInscripcionMateriaAlumno(int idAlumno,int idMateria){
          
          String sql ="delete from inscripcion where idAlumno =? and idMateria=?";
      try {
