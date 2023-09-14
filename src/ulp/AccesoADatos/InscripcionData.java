@@ -142,7 +142,8 @@ public void actualizarNota(int idAlumno, int idMateria, double nota){ //video 6 
 			materia = new Materia();
 			materia.setIdMateria(rs.getInt("idMateria"));
 			materia.setNombre(rs.getString("nombre"));
-			materia.setAñoMateria(rs.getInt("año"));			materias.add(materia);
+			materia.setAñoMateria(rs.getInt("año"));			
+                        materias.add(materia);
 		}
 		ps.close ();
 
