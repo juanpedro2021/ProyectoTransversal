@@ -151,6 +151,31 @@ public void actualizarNota(int idAlumno, int idMateria, double nota){ //video 6 
 		}
 		return materias;
 		}
+    public List<Materia> obtenerMateriasNoCursadas(int idAlumno){
+	
+	ArrayList<Materia> materias = new ArrayList<>();
+	
+        String sql = "SELECT * FROM materia WHERE activo = 1 AND idMateria not in (SELECT idMateria FROM inscripcion WHERE idAlumno = ?)";
+        
+	try{		
+		PreparedStatement ps = (PreparedStatement) con.prepareStatement(sql);
+		ps.setInt(1, idAlumno);
+		ResultSet rs = ps.executeQuery();
+		Materia materia;
+
+		while (rs.next()) {
+			materia = new Materia();
+			materia.setIdMateria(rs.getInt("idMateria"));
+			materia.setNombre(rs.getString("nombre"));
+			materia.setAñoMateria(rs.getInt("año"));			materias.add(materia);
+		}
+		ps.close ();
+
+	 	} catch (SQLException ex) {
+			JOptionPane.showMessageDialog(null, "Error al obtener inscripciones"+ex.getMessage());
+		}
+		return materias;
+		}
 
      public void eliminarInscripcion(int idAlumno,int idMateria){
          
