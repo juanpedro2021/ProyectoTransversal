@@ -79,6 +79,32 @@ public List <Inscripcion> obtenerInscripciones(){
             }
             return inscripciones;
 }
+
+public List <Inscripcion> obtenerInscripcionesPorAlumno(int idAlumno){
+    ArrayList <Inscripcion> inscripciones = new ArrayList<>();
+    
+    String sql = "SELECT * FROM inscripcion WHERE idAlumno = ? ";
+    
+            try {
+                PreparedStatement ps=con.prepareStatement(sql);
+                ps.setInt(1, idAlumno);
+                ResultSet rs=ps.executeQuery();
+               while(rs.next()){
+                   Inscripcion ins=new Inscripcion();
+                   ins.setIdInscripcion(rs.getInt("idInscripto"));
+                  Alumno alu=ad.buscarAlumno(rs.getInt("idAlumno"));
+                  Materia mat=md.buscarMateria(rs.getInt("idMateria"));
+                  ins.setAlumno(alu);
+                  ins.setMateria(mat);
+                  ins.setNota(rs.getDouble("nota"));
+                  inscripciones.add(ins);
+               }
+               ps.close();
+            } catch (SQLException ex) {
+              JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion"+ex.getMessage());
+            }
+            return inscripciones;
+}
 public void actualizarNota(int idAlumno, int idMateria, double nota){ //video 6 minuto 21.55
     
     String sql = "UPDATE inscripcion SET nota = ? WHERE idAlumno=? AND idMateria = ? ";
