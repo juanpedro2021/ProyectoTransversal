@@ -104,6 +104,7 @@ public List <Inscripcion> obtenerInscripciones(){
             } catch (SQLException ex) {
               JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion"+ex.getMessage());
             }
+           return inscripciones;
 }
 
 public void actualizarNota(int idAlumno, int idMateria, double nota){
