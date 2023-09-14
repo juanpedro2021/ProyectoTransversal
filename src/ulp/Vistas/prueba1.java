@@ -17,6 +17,7 @@ public class prueba1 extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         boton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -31,6 +32,13 @@ public class prueba1 extends javax.swing.JFrame {
 
         jLabel2.setText("Botoneta");
 
+        jButton1.setText("Apretame Gian");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -41,8 +49,10 @@ public class prueba1 extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jLabel1))
                 .addGap(45, 45, 45)
-                .addComponent(boton)
-                .addContainerGap(186, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(boton)
+                    .addComponent(jButton1))
+                .addContainerGap(157, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -51,9 +61,11 @@ public class prueba1 extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(boton)
                     .addComponent(jLabel1))
-                .addGap(66, 66, 66)
-                .addComponent(jLabel2)
-                .addContainerGap(163, Short.MAX_VALUE))
+                .addGap(58, 58, 58)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jButton1))
+                .addContainerGap(155, Short.MAX_VALUE))
         );
 
         pack();
@@ -66,6 +78,10 @@ public class prueba1 extends javax.swing.JFrame {
           
         
     }//GEN-LAST:event_botonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        JOptionPane.showMessageDialog(null, "Sapee"); 
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     
     public static void main(String args[]) {
@@ -102,6 +118,7 @@ public class prueba1 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton boton;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
