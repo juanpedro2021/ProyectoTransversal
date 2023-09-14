@@ -54,7 +54,7 @@ public class InscripcionData {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion" + ex.getMessage());
 
         }
-    }
+    }//esta
 
     public List<Inscripcion> obtenerInscripciones() {
         ArrayList<Inscripcion> inscripciones = new ArrayList<>();
@@ -79,7 +79,7 @@ public class InscripcionData {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion" + ex.getMessage());
         }
         return inscripciones;
-    }
+    }//esta
 
     public List<Inscripcion> obtenerInscripcionesPorAlumno(int idAlumno) {
         ArrayList<Inscripcion> inscripciones = new ArrayList<>();
@@ -105,7 +105,7 @@ public class InscripcionData {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion" + ex.getMessage());
         }
         return inscripciones;
-    }
+    }//esta
 
     public void actualizarNota(int idAlumno, int idMateria, double nota) { // video 6 minuto 21.55
 
@@ -125,7 +125,7 @@ public class InscripcionData {
             Logger.getLogger(InscripcionData.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-    }
+    }//esta
 
     public List<Materia> obtenerMateriasCursadas(int id) {
 
@@ -152,9 +152,35 @@ public class InscripcionData {
             JOptionPane.showMessageDialog(null, "Error al obtener inscripciones" + ex.getMessage());
         }
         return materias;
-    }
+    }//esta
+    
+    public List<Materia> obtenerMateriasNoCursadas(int idAlumno){
+	
+	ArrayList<Materia> materias = new ArrayList<>();
+	
+        String sql = "SELECT * FROM materia WHERE activo = 1 AND idMateria not in (SELECT idMateria FROM inscripcion WHERE idAlumno = ?)";
+        
+	try{		
+		PreparedStatement ps = (PreparedStatement) con.prepareStatement(sql);
+		ps.setInt(1, idAlumno);
+		ResultSet rs = ps.executeQuery();
+		Materia materia;
 
-    public void eliminarInscripcion(int idAlumno, int idMateria) {
+		while (rs.next()) {
+			materia = new Materia();
+			materia.setIdMateria(rs.getInt("idMateria"));
+			materia.setNombre(rs.getString("nombre"));
+			materia.setAñoMateria(rs.getInt("año"));			materias.add(materia);
+		}
+		ps.close ();
+
+	 	} catch (SQLException ex) {
+			JOptionPane.showMessageDialog(null, "Error al obtener inscripciones"+ex.getMessage());
+		}
+		return materias;
+		}//esta
+
+    public void borrarInscripcionMateriaAlumno(int idAlumno, int idMateria) {
 
         String sql = "delete from inscripcion where idAlumno =? and idMateria=?";
         try {
@@ -173,7 +199,7 @@ public class InscripcionData {
             JOptionPane.showMessageDialog(null, "erro al acceder a la tabla inscripcion");
         }
 
-    }
+    }//esta
 
     public List<Alumno> obtenerAlumnosXMateria(int idMateria) {
         ArrayList<Alumno> alumnosMateria = new ArrayList<>();
@@ -202,148 +228,8 @@ public class InscripcionData {
         return alumnosMateria;
 
     }
-
 }
 
-    public List<Inscripcion> obtenerInscripciones() {
-        ArrayList<Inscripcion> inscripciones = new ArrayList<>();
 
-        String sql = "SELECT * FROM inscripcion ";
 
-        try {
-            PreparedStatement ps = con.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                Inscripcion ins = new Inscripcion();
-                ins.setIdInscripcion(rs.getInt("idInscripto"));
-                Alumno alu = ad.buscarAlumno(rs.getInt("idAlumno"));
-                Materia mat = md.buscarMateria(rs.getInt("idMateria"));
-                ins.setAlumno(alu);
-                ins.setMateria(mat);
-                ins.setNota(rs.getDouble("nota"));
-                inscripciones.add(ins);
-            }
-            ps.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion" + ex.getMessage());
-        }
-        return inscripciones;
-    }
-
-    public List<Inscripcion> obtenerInscripcionesPorAlumno(int idAlumno) {
-        ArrayList<Inscripcion> inscripciones = new ArrayList<>();
-
-        String sql = "SELECT * FROM inscripcion WHERE idAlumno = ? ";
-
-        try {
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, idAlumno);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                Inscripcion ins = new Inscripcion();
-                ins.setIdInscripcion(rs.getInt("idInscripto"));
-                Alumno alu = ad.buscarAlumno(rs.getInt("idAlumno"));
-                Materia mat = md.buscarMateria(rs.getInt("idMateria"));
-                ins.setAlumno(alu);
-                ins.setMateria(mat);
-                ins.setNota(rs.getDouble("nota"));
-                inscripciones.add(ins);
-            }
-            ps.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion" + ex.getMessage());
-        }
-        return inscripciones;
-    }
-
-    public void actualizarNota(int idAlumno, int idMateria, double nota) { // video 6 minuto 21.55
-
-        String sql = "UPDATE inscripcion SET nota = ? WHERE idAlumno=? AND idMateria = ? ";
-        try {
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setDouble(1, nota);
-            ps.setInt(2, idAlumno);
-            ps.setInt(3, idMateria);
-            int filas = ps.executeUpdate();
-
-            if (filas > 0) {
-                JOptionPane.showMessageDialog(null, "Nota actualizada");
-            }
-            ps.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(InscripcionData.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-
-    public List<Materia> obtenerMateriasCursadas(int id) {
-
-        List<Materia> materias = new ArrayList<>();
-
-        String sql = "SELECT inscripcion.idMateria, nombre, año FROM inscripcion, materia WHERE inscripcion.idMateria = materia.idMateria AND inscripcion.idAlumno = ?;";
-
-        try {
-            PreparedStatement ps = (PreparedStatement) con.prepareStatement(sql);
-            ps.setInt(1, id);
-            ResultSet rs = ps.executeQuery();
-            Materia materia;
-
-            while (rs.next()) {
-                materia = new Materia();
-                materia.setIdMateria(rs.getInt("idMateria"));
-                materia.setNombre(rs.getString("nombre"));
-                materia.setAñoMateria(rs.getInt("año"));
-                materias.add(materia);
-            }
-            ps.close();
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al obtener inscripciones" + ex.getMessage());
-        }
-        return materias;
-    }
-
-    public List<Materia> obtenerMateriasNoCursadas(int idAlumno){
-	
-	ArrayList<Materia> materias = new ArrayList<>();
-	
-        String sql = "SELECT * FROM materia WHERE activo = 1 AND idMateria not in (SELECT idMateria FROM inscripcion WHERE idAlumno = ?)";
-        
-	try{		
-		PreparedStatement ps = (PreparedStatement) con.prepareStatement(sql);
-		ps.setInt(1, idAlumno);
-		ResultSet rs = ps.executeQuery();
-		Materia materia;
-
-		while (rs.next()) {
-			materia = new Materia();
-			materia.setIdMateria(rs.getInt("idMateria"));
-			materia.setNombre(rs.getString("nombre"));
-			materia.setAñoMateria(rs.getInt("año"));			materias.add(materia);
-		}
-		ps.close ();
-
-	 	} catch (SQLException ex) {
-			JOptionPane.showMessageDialog(null, "Error al obtener inscripciones"+ex.getMessage());
-		}
-		return materias;
-		}
-
-    public void borrarInscripcionMateriaAlumno(int idAlumno,int idMateria){
-         
-         String sql ="delete from inscripcion where idAlumno =? and idMateria=?";
-     try {
-         
-         PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-       
-         
-         ps.setInt(1, idAlumno);
-         ps.setInt(2, idMateria);
-         
-         int filas=ps.executeUpdate();
-         
-           if (filas>0){
-        JOptionPane.showMessageDialog(null, "inscripcion  borrada"); 
-    }
-
-}
+   
