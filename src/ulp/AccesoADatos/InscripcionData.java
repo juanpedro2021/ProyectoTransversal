@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import ulp.Entidades.Inscripcion;
+import ulp.Entidades.Materia;
 
 /**
  *
@@ -61,31 +62,31 @@ public void guardarInscripcion(Inscripcion ins){
 
 }
 
-    //public List <Materia> obtenerMateriasCursadas(int id) {
-//	
-//	List<Materia> materias = new ArrayList<Materia>();
-//	
-//	try{
-//		String sql = "SELECT inscripcion.idMateria, nombre, año FROM inscripcion, materia WHERE inscripcion.idMateria = materia.idMateria\n AND inscripcion.idAlumno = ?;" ;
-//		PreparedStatement ps = (PreparedStatement) con.prepareStatement(sql);
-//		ps.setInt(1, id);
-//		ResultSet rs = ps.executeQuery();
-//		Materia materia;
-//
-//		while (rs.next()) {
-//			materia = new Materia();
-//			materia.setIdMateria(rs.getInt("idMateria"));
-//			materia.setNombre(rs.getString("nombre"));
-//			materia.setAñoMateria(rs.getInt("año"));
-//			materias.add(materia);
-//		}
-//		ps.close ();
-//
-//	 	} catch (SQLException ex) {
-//			JOptionPane.showMessageDialog(null, "Error al obtener materias cursadas"+ex.getMessage());
-//		}
-//		return materias;
-//		}
+    public List <Materia> obtenerMateriasCursadas(int id) {
+	
+	List<Materia> materias = new ArrayList<Materia>();
+	
+	try{
+		String sql = "SELECT inscripcion.idMateria, nombre, año FROM inscripcion, materia WHERE inscripcion.idMateria = materia.idMateria\n AND inscripcion.idAlumno = ?;" ;
+		PreparedStatement ps = (PreparedStatement) con.prepareStatement(sql);
+		ps.setInt(1, id);
+		ResultSet rs = ps.executeQuery();
+		Materia materia;
+
+		while (rs.next()) {
+			Materia materia = new Materia();
+			materia.setIdMateria(rs.getInt("idMateria"));
+			materia.setNombre(rs.getString("nombre"));
+			materia.setAñoMateria(rs.getInt("año"));
+			materias.add(materia);
+		}
+		ps.close ();
+
+	 	} catch (SQLException ex) {
+			JOptionPane.showMessageDialog(null, "Error al obtener materias cursadas"+ex.getMessage());
+		}
+		return materias;
+		}
 
 public List <Inscripcion> obtenerInscripciones(){
     ArrayList <Inscripcion> inscripciones = new ArrayList<>();
