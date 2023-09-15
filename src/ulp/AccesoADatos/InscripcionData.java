@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 import ulp.Entidades.Inscripcion;
 import ulp.Entidades.Materia;
 
+
 /**
  *
  * @author Gianfranco
@@ -65,16 +66,16 @@ public void guardarInscripcion(Inscripcion ins){
     public List <Materia> obtenerMateriasCursadas(int id) {
 	
 	List<Materia> materias = new ArrayList<Materia>();
-	
+	String sql = "SELECT inscripcion.idMateria, nombre, año FROM inscripcion, materia WHERE inscripcion.idMateria = materia.idMateria\n AND inscripcion.idAlumno = ?;" ;
 	try{
-		String sql = "SELECT inscripcion.idMateria, nombre, año FROM inscripcion, materia WHERE inscripcion.idMateria = materia.idMateria\n AND inscripcion.idAlumno = ?;" ;
+		
 		PreparedStatement ps = (PreparedStatement) con.prepareStatement(sql);
 		ps.setInt(1, id);
 		ResultSet rs = ps.executeQuery();
 		Materia materia;
 
 		while (rs.next()) {
-			Materia materia = new Materia();
+			materia = new Materia();
 			materia.setIdMateria(rs.getInt("idMateria"));
 			materia.setNombre(rs.getString("nombre"));
 			materia.setAñoMateria(rs.getInt("año"));
