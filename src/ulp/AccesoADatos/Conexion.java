@@ -32,7 +32,7 @@ public class Conexion {
           JOptionPane.showMessageDialog(null, "error a cargar driver = " + ex.getLocalizedMessage());
             
         } catch (SQLException co) {
-            JOptionPane.showMessageDialog(null, "error de coneccion = " + co.getLocalizedMessage());
+            JOptionPane.showMessageDialog(null, "error de conexion = " + co.getLocalizedMessage());
             
         }
         
