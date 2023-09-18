@@ -22,12 +22,11 @@ public class Conexion {
     public static Connection getConexion(){
         try{
         if (connection==null) {
-            Class.forName("org.maridb.jdbc.Driver");
+            Class.forName("org.mariadb.jdbc.Driver");
             //creo la conexion con la base de datos
             
             connection = DriverManager.getConnection(URL+DB + 
-                    "?useLegacyDatetimecode=false&serverTimezone-UTC"+ "&user=" 
-                    + USUARIO + "&password=" + PASSWORD) ;
+                   USUARIO +  PASSWORD) ;
         }
         } catch (ClassNotFoundException ex) {
           JOptionPane.showMessageDialog(null, "error a cargar driver = " + ex.getLocalizedMessage());
