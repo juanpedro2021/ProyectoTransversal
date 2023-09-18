@@ -3,8 +3,10 @@ import java.sql.Connection;
 import java.time.LocalDate;
 import ulp.AccesoADatos.AlumnoData;
 import ulp.AccesoADatos.Conexion;
+import ulp.AccesoADatos.InscripcionData;
 import ulp.AccesoADatos.MateriaData;
 import ulp.Entidades.Alumno;
+import ulp.Entidades.Inscripcion;
 import ulp.Entidades.Materia;
 
 /*
@@ -29,16 +31,25 @@ public class Main {
 //agergo un alumno
 //
 //        alu.guardarAlumno(juan);
-//     
-//   //  creo una materia
-    Materia m1 = new Materia("matematica",2,true);
-
-     MateriaData m2 = new MateriaData();
-////agrego una materia
-     m2.guardarMateria(m1);
+////     
+////   //  creo una materia
+//    Materia m1 = new Materia("matematica",2,true);
+//
+//     MateriaData m2 = new MateriaData();
+//////agrego una materia
+//     m2.guardarMateria(m1);
 ////     
 //
-//         
+//     
+//      AlumnoData ad=new AlumnoData();
+//      MateriaData md=new MateriaData();
+//      InscripcionData id=new InscripcionData();
+//      
+//      Alumno beatriz=ad.buscarAlumno(11);
+//      Materia matematica=md.buscarMateria(37);
+//      Inscripcion ins=new Inscripcion(beatriz,matematica,9.5);
+//
+//      id.guardarInscripcion(ins);
      }
 
      }
