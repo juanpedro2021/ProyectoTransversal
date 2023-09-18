@@ -25,8 +25,9 @@ public class Conexion {
             Class.forName("org.mariadb.jdbc.Driver");
             //creo la conexion con la base de datos
             
-            connection = DriverManager.getConnection(URL+DB + 
-                   USUARIO +  PASSWORD) ;
+           connection = DriverManager.getConnection(URL+DB + 
+                    "?useLegacyDatetimecode=false&serverTimezone-UTC"+ "&user=" 
+                    + USUARIO + "&password=" + PASSWORD) ;
         }
         } catch (ClassNotFoundException ex) {
           JOptionPane.showMessageDialog(null, "error a cargar driver = " + ex.getLocalizedMessage());

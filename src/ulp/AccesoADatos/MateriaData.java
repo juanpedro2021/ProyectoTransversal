@@ -32,17 +32,25 @@ public class MateriaData {
 
 public void guardarMateria (Materia materia) {
 	
-	String sql = "INSERT INTO materia (nombre, añoMateria, activo) VALUES (?, ?, ?)";
+	String sql = "INSERT INTO materia (nombre, año, estado) VALUES (?, ?, ?)";
 	try {
 		PreparedStatement ps = con.prepareStatement (sql, Statement.RETURN_GENERATED_KEYS);
+                System.out.println("PreparedStatement");
 		ps.setString(1, materia.getNombre());
+                System.out.println("get nombre");
 		ps.setInt(2, materia.getAñoMateria());
+                System.out.println("GetAño");
 		ps.setBoolean(3, materia.isActivo());
+                System.out.println("Boolean");
+                System.out.println("Ingreso campos");
 		ps.executeUpdate();
+                System.out.println("Ingreso Execute");
 		ResultSet rs = ps.getGeneratedKeys();
+                System.out.println("Creo result");
 
 		if (rs.next()){
-			materia.setIdMateria(rs.getInt("idMateria"));
+                    System.out.println("Ingreso if");
+			materia.setIdMateria(rs.getInt(1));
 		JOptionPane.showMessageDialog(null, "Materia añadida con éxito");
 		}
 		ps.close();
