@@ -37,7 +37,7 @@ public void guardarAlumno (Alumno alumno) {
 		ResultSet rs = ps.getGeneratedKeys();
 
 		if (rs.next()){
-			alumno.setIdAlumno(rs.getInt("idAlumno"));
+			alumno.setIdAlumno(rs.getInt(1));
 		JOptionPane.showMessageDialog(null, "Alumno añadido con éxito");
 		}
 		ps.close();

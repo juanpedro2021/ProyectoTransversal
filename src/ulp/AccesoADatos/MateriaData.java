@@ -29,7 +29,7 @@ private Connection con = null;
 
 public void guardarMateria (Materia materia) {
 	
-	String sql = "INSERT INTO materia (nombre, añoMateria, activo) VALUES (?, ?, ?)";
+	String sql = "INSERT INTO materia (nombre, año, estado) VALUES (?, ?, ?)";
 	try {
 		PreparedStatement ps = con.prepareStatement (sql, Statement.RETURN_GENERATED_KEYS);
 		ps.setString(1, materia.getNombre());
@@ -39,7 +39,7 @@ public void guardarMateria (Materia materia) {
 		ResultSet rs = ps.getGeneratedKeys();
 
 		if (rs.next()){
-			materia.setIdMateria(rs.getInt("idMateria"));
+			materia.setIdMateria(rs.getInt(1));
 		JOptionPane.showMessageDialog(null, "Materia añadida con éxito");
 		}
 		ps.close();
@@ -51,7 +51,7 @@ public void guardarMateria (Materia materia) {
 
 public Materia buscarMateria(int id){
 	Materia materia = null;
-	String sql = "SELECT nombre, añoMateria FROM materia WHERE idMateria = ? AND activo = 1";
+	String sql = "SELECT nombre, año FROM materia WHERE idMateria = ? AND esatdo = 1";
 	PreparedStatement ps = null;
 	try {
 		ps = (PreparedStatement) con.prepareStatement(sql);
