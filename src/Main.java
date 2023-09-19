@@ -21,40 +21,11 @@ import ulp.Entidades.Materia;
  */
 public class Main {
      public static void main(String[] args) {
-         
-         
-  //       Connection con=Conexion.getConexion();
-       //creo un alumno
-           Alumno juan = new Alumno(111222333,"luna","pedro",LocalDate.of(1980, 4, 25),true);
-       AlumnoData alu= new AlumnoData();
-
-//agergo un alumno
-
-//        alu.guardarAlumno(juan);
-////     
-////   //  creo una materia
-//    Materia m1 = new Materia("matematica",2,true);
-//
-//     MateriaData m2 = new MateriaData();
-//////agrego una materia
-//     m2.guardarMateria(m1);
-////     
-//
-//     
-//      AlumnoData ad=new AlumnoData();
-//      MateriaData md=new MateriaData();
-//      InscripcionData id=new InscripcionData();
-//      
-//      Alumno beatriz=ad.buscarAlumno(11);
-//      Materia matematica=md.buscarMateria(37);
-//      Inscripcion ins=new Inscripcion(beatriz,matematica,9.5);
-//
-//      id.guardarInscripcion(ins);
-
-        Alumno alumnoEncontrado = alu.buscarAlumno(14);
-        
+      AlumnoData ad=new AlumnoData();
+      MateriaData md=new MateriaData();
+      InscripcionData id=new InscripcionData();
       
-       System.out.println(""+ alumnoEncontrado.toString());
+      Alumno encontrado= ad.buscarAlumnoPorDni(11888888);
      }
 
      }
