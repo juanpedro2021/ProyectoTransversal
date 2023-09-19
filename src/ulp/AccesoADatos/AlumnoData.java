@@ -54,9 +54,9 @@ public void guardarAlumno (Alumno alumno) {
 public Alumno buscarAlumno(int id){//Video 5 Mercado. 0.10
 	Alumno alumno = null;
 	String sql = "SELECT dni, apellido, nombre, fechaNacimiento FROM alumno WHERE idAlumno = ? AND estado = 1";
-	PreparatedStatement ps = null;
+	
 	try {
-		ps = (PreparatedStatement) con.prepareStatement(sql);
+		 PreparedStatement ps= con.prepareStatement(sql);
 		ps.setInt(1, id);
 
 		ResultSet rs = ps.executeQuery();

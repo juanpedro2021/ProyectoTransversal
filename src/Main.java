@@ -25,11 +25,11 @@ public class Main {
          
   //       Connection con=Conexion.getConexion();
        //creo un alumno
-//           Alumno juan = new Alumno(111222333,"luna","pedro",LocalDate.of(1980, 4, 25),true);
-//       AlumnoData alu= new AlumnoData();
+           Alumno juan = new Alumno(111222333,"luna","pedro",LocalDate.of(1980, 4, 25),true);
+       AlumnoData alu= new AlumnoData();
 
 //agergo un alumno
-//
+
 //        alu.guardarAlumno(juan);
 ////     
 ////   //  creo una materia
@@ -50,6 +50,11 @@ public class Main {
 //      Inscripcion ins=new Inscripcion(beatriz,matematica,9.5);
 //
 //      id.guardarInscripcion(ins);
+
+        Alumno alumnoEncontrado = alu.buscarAlumno(14);
+        
+      
+       System.out.println(""+ alumnoEncontrado.toString());
      }
 
      }
