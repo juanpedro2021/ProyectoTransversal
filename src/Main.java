@@ -26,6 +26,7 @@ public class Main {
       InscripcionData id=new InscripcionData();
       
       Alumno encontrado= ad.buscarAlumnoPorDni(11888888);
+         System.out.println(""+encontrado.toString());
      }
 
      }

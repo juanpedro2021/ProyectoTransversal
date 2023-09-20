@@ -101,9 +101,10 @@ public Alumno buscarAlumno(int id){//Video 5 Mercado. 0.10
   public Alumno buscarAlumnoPorDni(int dni){ //Video 5 Mercado 12.00
 	Alumno alumno = null;
 	String sql = "SELECT idAlumno, dni, apellido, nombre, fechaNacimiento FROM alumno WHERE dni = ? AND estado = 1";
-	PreparatedStatement ps = null;
+//	PreparatedStatement ps = null;
 	try {
-		ps = (PreparatedStatement) con.prepareStatement(sql);
+//		ps = (PreparatedStatement) con.prepareStatement(sql);
+               PreparedStatement ps = con.prepareStatement(sql);
 		ps.setInt(1, dni);
 
 		ResultSet rs = ps.executeQuery();
