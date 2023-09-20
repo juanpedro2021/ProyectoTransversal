@@ -39,19 +39,18 @@ public class InscripcionData {
             // pido los datos a el objeto INSCRIPCION **ins**
 
             ps.setDouble(1, ins.getNota());
-            System.out.println("puso nota");
+          
             ps.setInt(2, ins.getAlumno().getIdAlumno());
-            System.out.println("puso id alumno");
+           
             ps.setInt(3, ins.getMateria().getIdMateria());
-            System.out.println("puso id materia");
             
             ps.executeUpdate();
-            System.out.println("ejecutaaa");
+            
             ResultSet rs = ps.getGeneratedKeys();
-            System.out.println(" crea el rs");
+            
 
             if (rs.next()) {
-                System.out.println("entra al if");
+               
                 ins.setIdInscripcion(rs.getInt(1));
                 JOptionPane.showMessageDialog(null, "incripcion agregada con exito");
             }
