@@ -28,11 +28,15 @@ public void guardarAlumno (Alumno alumno) {
 	String sql = "INSERT INTO alumno (dni, apellido, nombre, fechaNacimiento, estado) VALUES (?, ?, ?, ?, ?)";
 	try {
 		PreparedStatement ps = con.prepareStatement (sql, Statement.RETURN_GENERATED_KEYS);
+                
+                // relleno el sql con los datos del alumno
+                
 		ps.setInt(1, alumno.getDni());
 		ps.setString(2, alumno.getApellido());
 		ps.setString(3, alumno.getNombre());
 		ps.setDate(4, Date.valueOf(alumno.getFechaNac()));//localDate a Date
-		ps.setBoolean(5, alumno.isActivo());//if reducido
+		ps.setBoolean(5, alumno.isActivo());
+                //ejecuto el comando sql
 		ps.executeUpdate();
 		ResultSet rs = ps.getGeneratedKeys();
 
@@ -73,8 +77,9 @@ public Alumno buscarAlumno(int id){//Video 5 Mercado. 0.10
 			JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno "+ex.getMessage());
 		}
 		return alumno;
-		}
-
+	
+}
+/*
     private static class PreparatedStatement {
 
         public PreparatedStatement() {
@@ -92,13 +97,14 @@ public Alumno buscarAlumno(int id){//Video 5 Mercado. 0.10
             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
     }
-
+*/
   public Alumno buscarAlumnoPorDni(int dni){ //Video 5 Mercado 12.00
 	Alumno alumno = null;
 	String sql = "SELECT idAlumno, dni, apellido, nombre, fechaNacimiento FROM alumno WHERE dni = ? AND estado = 1";
-	PreparatedStatement ps = null;
+	//PreparatedStatement ps = null;
 	try {
-		ps = (PreparatedStatement) con.prepareStatement(sql);
+		//ps = (PreparatedStatement) con.prepareStatement(sql);
+                 PreparedStatement ps = con.prepareStatement(sql);
 		ps.setInt(1, dni);
 
 		ResultSet rs = ps.executeQuery();
@@ -126,10 +132,11 @@ public Alumno buscarAlumno(int id){//Video 5 Mercado. 0.10
   public List <Alumno> listarAlumnos() {
 	
 	List<Alumno> alumnos = new ArrayList<>();
-	
+	String sql = "SELECT * FROM alumno WHERE estado = 1";
 	try{
-		String sql = "SELECT * FROM alumno WHERE estado = 1";
-		PreparatedStatement ps = (PreparatedStatement) con.prepareStatement(sql);
+		//String sql = "SELECT * FROM alumno WHERE estado = 1";
+		//PreparatedStatement ps = (PreparatedStatement) con.prepareStatement(sql);
+                 PreparedStatement ps = con.prepareStatement(sql);
 		ResultSet rs = ps.executeQuery();
 		while (rs.next()) {
 
@@ -156,10 +163,11 @@ public Alumno buscarAlumno(int id){//Video 5 Mercado. 0.10
   public void modificarAlumno (Alumno alumno) {// 21.10 Video 4 de Mercado (un nuevo Método en AlumnoData)
 	
 	String sql = "UPDATE alumno SET dni = ?, apellido = ?, nombre = ?, fechaNacimiento = ? WHERE idAlumno = ?";
-	PreparedStatement ps = null;
+	//PreparedStatement ps = null;
 
 	try {
-		ps = con.prepareStatement(sql);
+		//ps = con.prepareStatement(sql);
+                 PreparedStatement ps = con.prepareStatement(sql);
 		ps.setInt(1, alumno.getDni());
 		ps.setString(2, alumno.getApellido());
 		ps.setString(3, alumno.getNombre());
@@ -179,9 +187,9 @@ public Alumno buscarAlumno(int id){//Video 5 Mercado. 0.10
 		}
 
 public void eliminarAlumno(int id) {
-
+String sql = "UPDATE alumno SET estado = 0 WHERE idAlumno = ? ";
 	try {
-		String sql = "UPDATE alumno SET estado = 0 WHERE idAlumno = ? ";
+		
 		PreparedStatement ps = con.prepareStatement (sql);
 		ps.setInt(1, id);
 		int fila=ps.executeUpdate();
