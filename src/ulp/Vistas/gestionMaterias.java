@@ -24,7 +24,7 @@ public class gestionMaterias extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         bEstado = new javax.swing.JRadioButton();
         codigo = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        bBuscar = new javax.swing.JButton();
         nombre = new javax.swing.JTextField();
         nivel = new javax.swing.JTextField();
         bLimpiar = new javax.swing.JButton();
@@ -56,7 +56,12 @@ public class gestionMaterias extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton1.setText("BUSCAR");
+        bBuscar.setText("BUSCAR");
+        bBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bBuscarActionPerformed(evt);
+            }
+        });
 
         bLimpiar.setText("limpiar");
         bLimpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -111,7 +116,7 @@ public class gestionMaterias extends javax.swing.JInternalFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(45, 45, 45)
-                                        .addComponent(jButton1))
+                                        .addComponent(bBuscar))
                                     .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(bLimpiar)
@@ -137,7 +142,7 @@ public class gestionMaterias extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1))
+                            .addComponent(bBuscar))
                         .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
@@ -202,15 +207,19 @@ public class gestionMaterias extends javax.swing.JInternalFrame {
         nombre.setText("");
     }//GEN-LAST:event_bLimpiarActionPerformed
 
+    private void bBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bBuscarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bBuscar;
     private javax.swing.JButton bEliminar;
     private javax.swing.JRadioButton bEstado;
     private javax.swing.JButton bGuardar;
     private javax.swing.JButton bLimpiar;
     private javax.swing.JButton bsalir;
     private javax.swing.JTextField codigo;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
