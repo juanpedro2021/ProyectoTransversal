@@ -79,31 +79,13 @@ public Alumno buscarAlumno(int id){//Video 5 Mercado. 0.10
 		return alumno;
 	
 }
-/*
-    private static class PreparatedStatement {
 
-        public PreparatedStatement() {
-        }
-
-        private ResultSet executeQuery() {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
-
-        private void close() {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
-
-        private void setInt(int i, int id) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
-    }
-*/
   public Alumno buscarAlumnoPorDni(int dni){ //Video 5 Mercado 12.00
 	Alumno alumno = null;
 	String sql = "SELECT idAlumno, dni, apellido, nombre, fechaNacimiento FROM alumno WHERE dni = ? AND estado = 1";
-	//PreparatedStatement ps = null;
+	
 	try {
-		//ps = (PreparatedStatement) con.prepareStatement(sql);
+		
                  PreparedStatement ps = con.prepareStatement(sql);
 		ps.setInt(1, dni);
 
@@ -134,8 +116,7 @@ public Alumno buscarAlumno(int id){//Video 5 Mercado. 0.10
 	List<Alumno> alumnos = new ArrayList<>();
 	String sql = "SELECT * FROM alumno WHERE estado = 1";
 	try{
-		//String sql = "SELECT * FROM alumno WHERE estado = 1";
-		//PreparatedStatement ps = (PreparatedStatement) con.prepareStatement(sql);
+
                  PreparedStatement ps = con.prepareStatement(sql);
 		ResultSet rs = ps.executeQuery();
 		while (rs.next()) {
@@ -163,10 +144,10 @@ public Alumno buscarAlumno(int id){//Video 5 Mercado. 0.10
   public void modificarAlumno (Alumno alumno) {// 21.10 Video 4 de Mercado (un nuevo Método en AlumnoData)
 	
 	String sql = "UPDATE alumno SET dni = ?, apellido = ?, nombre = ?, fechaNacimiento = ? WHERE idAlumno = ?";
-	//PreparedStatement ps = null;
+
 
 	try {
-		//ps = con.prepareStatement(sql);
+
                  PreparedStatement ps = con.prepareStatement(sql);
 		ps.setInt(1, alumno.getDni());
 		ps.setString(2, alumno.getApellido());

@@ -59,7 +59,7 @@ public class InscripcionData {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion" + ex.getMessage());
 
         }
-    }//esta
+    }
 
     public List<Inscripcion> obtenerInscripciones() {
         ArrayList<Inscripcion> inscripciones = new ArrayList<>();
@@ -84,7 +84,7 @@ public class InscripcionData {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion" + ex.getMessage());
         }
         return inscripciones;
-    }//esta
+    }
 
     public List<Inscripcion> obtenerInscripcionesPorAlumno(int idAlumno) {
         ArrayList<Inscripcion> inscripciones = new ArrayList<>();
@@ -110,7 +110,7 @@ public class InscripcionData {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion" + ex.getMessage());
         }
         return inscripciones;
-    }//esta
+    }
 
     public void actualizarNota(int idAlumno, int idMateria, double nota) { // video 6 minuto 21.55
 
@@ -130,7 +130,7 @@ public class InscripcionData {
             Logger.getLogger(InscripcionData.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-    }//esta
+    }
 
     public List<Materia> obtenerMateriasCursadas(int id) {
 
@@ -157,7 +157,7 @@ public class InscripcionData {
             JOptionPane.showMessageDialog(null, "Error al obtener inscripciones" + ex.getMessage());
         }
         return materias;
-    }//esta
+    }
     
     public List<Materia> obtenerMateriasNoCursadas(int idAlumno){
 	
@@ -175,7 +175,8 @@ public class InscripcionData {
 			materia = new Materia();
 			materia.setIdMateria(rs.getInt("idMateria"));
 			materia.setNombre(rs.getString("nombre"));
-			materia.setAñoMateria(rs.getInt("año"));			materias.add(materia);
+			materia.setAñoMateria(rs.getInt("año"));			
+                        materias.add(materia);
 		}
 		ps.close ();
 
@@ -183,7 +184,7 @@ public class InscripcionData {
 			JOptionPane.showMessageDialog(null, "Error al obtener inscripciones"+ex.getMessage());
 		}
 		return materias;
-		}//esta
+		}
 
     public void borrarInscripcionMateriaAlumno(int idAlumno, int idMateria) {
 
@@ -204,7 +205,7 @@ public class InscripcionData {
             JOptionPane.showMessageDialog(null, "erro al acceder a la tabla inscripcion");
         }
 
-    }//esta
+    }
 
     public List<Alumno> obtenerAlumnosXMateria(int idMateria) {
         ArrayList<Alumno> alumnosMateria = new ArrayList<>();

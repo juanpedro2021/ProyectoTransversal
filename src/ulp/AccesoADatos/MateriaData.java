@@ -51,7 +51,7 @@ public void guardarMateria (Materia materia) {
 
 public Materia buscarMateria(int id){
 	Materia materia = null;
-	String sql = "SELECT nombre, año FROM materia WHERE idMateria = ? AND esatdo = 1";
+	String sql = "SELECT nombre, año FROM materia WHERE idMateria = ? AND etado = 1";
 	PreparedStatement ps = null;
 	try {
 		ps = (PreparedStatement) con.prepareStatement(sql);
@@ -79,10 +79,10 @@ public Materia buscarMateria(int id){
 public void modificarMateria (Materia materia) {
 	
 	String sql = "UPDATE materia SET nombre=?,año=?,estado= ? WHERE idMateria=?";
-	PreparedStatement ps = null;
+	
 
 	try {
-		ps = con.prepareStatement(sql);
+		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, materia.getNombre());
 		ps.setInt(2, materia.getAñoMateria());
 		ps.setBoolean(3, materia.isActivo());
