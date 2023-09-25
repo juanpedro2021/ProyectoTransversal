@@ -208,7 +208,17 @@ public class gestionMaterias extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_bLimpiarActionPerformed
 
     private void bBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarActionPerformed
-        // TODO add your handling code here:
+              int idMateria = Integer.parseInt(codigo.getText());
+        
+        MateriaData materiaG = new MateriaData();
+        Materia mate = new Materia();
+       mate = materiaG.buscarMateria(idMateria);
+        
+        if (materiaG != null) {
+            nombre.setText(mate.getNombre());
+            nivel.setText(String.valueOf(mate.getAñoMateria()));
+            bEstado.setSelected(mate.isActivo());
+        }
     }//GEN-LAST:event_bBuscarActionPerformed
 
 
