@@ -62,8 +62,8 @@ public Materia buscarMateria(int id){
 		if (rs.next()){
 		materia=new Materia();
 		materia.setIdMateria(id);
-                materia.setNombre("nombre");
-		materia.setAñoMateria(rs.getInt("añoMateria"));
+                materia.setNombre(rs.getString("nombre"));
+		materia.setAñoMateria(rs.getInt("año"));
 		materia.setActivo(true);
 		
 		} else {

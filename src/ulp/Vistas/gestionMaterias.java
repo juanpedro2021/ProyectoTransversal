@@ -205,6 +205,7 @@ public class gestionMaterias extends javax.swing.JInternalFrame {
         codigo.setText("");
         nivel.setText("");
         nombre.setText("");
+        bEstado.setSelected(false);
     }//GEN-LAST:event_bLimpiarActionPerformed
 
     private void bBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarActionPerformed
