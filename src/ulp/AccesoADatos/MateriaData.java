@@ -51,7 +51,7 @@ public void guardarMateria (Materia materia) {
 
 public Materia buscarMateria(int id){
 	Materia materia = null;
-	String sql = "SELECT nombre, año FROM materia WHERE idMateria = ? AND etado = 1";
+	String sql = "SELECT nombre, año FROM materia WHERE idMateria = ? AND estado = 1";
 	PreparedStatement ps = null;
 	try {
 		ps = (PreparedStatement) con.prepareStatement(sql);
