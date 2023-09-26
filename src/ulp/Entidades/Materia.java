@@ -5,19 +5,19 @@ package ulp.Entidades;
 public class Materia {
     private int idMateria;
     private String nombre;
-    private int anioMateria;
+    private int añoMateria;
     private boolean activo;
 
-    public Materia(int idMateria, String nombre, int anioMateria, boolean activo) {
+    public Materia(int idMateria, String nombre, int añoMateria, boolean activo) {
         this.idMateria = idMateria;
         this.nombre = nombre;
-        this.anioMateria = anioMateria;
+        this.añoMateria = añoMateria;
         this.activo = activo;
     }
 
-    public Materia(String nombre, int anioMateria, boolean activo) {
+    public Materia(String nombre, int añoMateria, boolean activo) {
         this.nombre = nombre;
-        this.anioMateria = anioMateria;
+        this.añoMateria = añoMateria;
         this.activo = activo;
     }
 
@@ -42,11 +42,11 @@ public class Materia {
     }
 
     public int getAñoMateria() {
-        return anioMateria;
+        return añoMateria;
     }
 
-    public void setAñoMateria(int anioMateria) {
-        this.anioMateria = anioMateria;
+    public void setAñoMateria(int añoMateria) {
+        this.añoMateria = añoMateria;
     }
 
     public boolean isActivo() {
@@ -59,7 +59,7 @@ public class Materia {
 
     @Override
     public String toString() {
-        return "Materia{" + "idMateria=" + idMateria + ", nombre=" + nombre + ", a\u00f1oMateria=" + anioMateria + ", activo=" + activo + '}';
+        return "Materia{" + "idMateria=" + idMateria + ", nombre=" + nombre + ", a\u00f1oMateria=" + añoMateria + ", activo=" + activo + '}';
     }
     
     

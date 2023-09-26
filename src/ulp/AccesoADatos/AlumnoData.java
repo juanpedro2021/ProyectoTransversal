@@ -25,7 +25,7 @@ public class AlumnoData {
         }
 public void guardarAlumno (Alumno alumno) {
 	
-	String sql = "INSERT INTO alumno (dni, apellido, nombre, fechaNac, estado) VALUES (?, ?, ?, ?, ?)";
+	String sql = "INSERT INTO alumno (dni, apellido, nombre, fechaNacimiento, estado) VALUES (?, ?, ?, ?, ?)";
 	try {
 		PreparedStatement ps = con.prepareStatement (sql, Statement.RETURN_GENERATED_KEYS);
                 
@@ -52,7 +52,7 @@ public void guardarAlumno (Alumno alumno) {
 
 public Alumno buscarAlumno(int id){//Video 5 Mercado. 0.10
 	Alumno alumno = null;
-	String sql = "SELECT dni, apellido, nombre, fechaNac FROM alumno WHERE idAlumno = ? AND estado = 1";
+	String sql = "SELECT dni, apellido, nombre, fechaNacimiento FROM alumno WHERE idAlumno = ? AND estado = 1";
 	
 	try {
 		PreparedStatement ps = con.prepareStatement(sql);
@@ -66,7 +66,7 @@ public Alumno buscarAlumno(int id){//Video 5 Mercado. 0.10
 		alumno.setDni(rs.getInt("dni"));
 		alumno.setApellido(rs.getString("apellido"));
 		alumno.setNombre(rs.getString("nombre"));
-		alumno.setFechaNac(rs.getDate("fechaNac").toLocalDate());
+		alumno.setFechaNac(rs.getDate("fechaNacimiento").toLocalDate());
 		alumno.setActivo(true); // en 7.25 explica esto
 		
 		} else {
@@ -82,7 +82,7 @@ public Alumno buscarAlumno(int id){//Video 5 Mercado. 0.10
 
   public Alumno buscarAlumnoPorDni(int dni){ //Video 5 Mercado 12.00
 	Alumno alumno = null;
-	String sql = "SELECT idAlumno, dni, apellido, nombre, fechaNac FROM alumno WHERE dni = ? AND estado = 1";
+	String sql = "SELECT idAlumno, dni, apellido, nombre, fechaNacimiento FROM alumno WHERE dni = ? AND estado = 1";
 	
 	try {
 		
@@ -97,7 +97,7 @@ public Alumno buscarAlumno(int id){//Video 5 Mercado. 0.10
 		alumno.setDni(rs.getInt("dni"));
 		alumno.setApellido(rs.getString("apellido"));
 		alumno.setNombre(rs.getString("nombre"));
-		alumno.setFechaNac(rs.getDate("fechaNac").toLocalDate());
+		alumno.setFechaNac(rs.getDate("fechaNacimiento").toLocalDate());
 		alumno.setActivo(true);
 		
 		} else {
@@ -127,7 +127,7 @@ public Alumno buscarAlumno(int id){//Video 5 Mercado. 0.10
 		alumno.setDni(rs.getInt("dni"));
 		alumno.setApellido(rs.getString("apellido"));
 		alumno.setNombre(rs.getString("nombre"));
-		alumno.setFechaNac(rs.getDate("fechaNac").toLocalDate());
+		alumno.setFechaNac(rs.getDate("fechaNacimiento").toLocalDate());
 		alumno.setActivo(rs.getBoolean("estado"));// diferente 17.45
 		alumnos.add(alumno);
 		
@@ -143,7 +143,7 @@ public Alumno buscarAlumno(int id){//Video 5 Mercado. 0.10
     
   public void modificarAlumno (Alumno alumno) {// 21.10 Video 4 de Mercado (un nuevo Método en AlumnoData)
 	
-	String sql = "UPDATE alumno SET dni = ?, apellido = ?, nombre = ?, fechaNac = ? WHERE idAlumno = ?";
+	String sql = "UPDATE alumno SET dni = ?, apellido = ?, nombre = ?, fechaNacimiento = ? WHERE idAlumno = ?";
 
 
 	try {
