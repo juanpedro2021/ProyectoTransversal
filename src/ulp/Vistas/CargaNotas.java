@@ -13,9 +13,10 @@ import ulp.Entidades.Materia;
 
 public class CargaNotas extends javax.swing.JInternalFrame {
 
+    
     private DefaultTableModel modelo;
     private List<Alumno> listaA;
-    private List<Materia> listaM;
+   
     
     private AlumnoData alumData;
     private InscripcionData insData;
@@ -31,6 +32,9 @@ public class CargaNotas extends javax.swing.JInternalFrame {
         
         cargarAlumnos();
         armarCabecera();
+//         borrarFilas();
+        cargarDatos();
+       
         
     }
 
@@ -76,8 +80,18 @@ public class CargaNotas extends javax.swing.JInternalFrame {
         jLabel2.setText("Seleccione un alumno:");
 
         jSalir.setText("Salir");
+        jSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jSalirActionPerformed(evt);
+            }
+        });
 
         jGuardar.setText("Guardar");
+        jGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jGuardarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -126,8 +140,16 @@ public class CargaNotas extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
+        cargarDatos();
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSalirActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jSalirActionPerformed
+
+    private void jGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jGuardarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jGuardarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -140,6 +162,14 @@ public class CargaNotas extends javax.swing.JInternalFrame {
     private javax.swing.JTable jTInscripciones;
     // End of variables declaration//GEN-END:variables
 
+    
+    public boolean isCellEditable(int fila, int columna){
+        if(columna==2){
+            return true;
+        }else{
+            return false;
+        }
+    }
     private void armarCabecera(){
         modelo.addColumn("Codigo");
         modelo.addColumn("Nombre");
@@ -160,12 +190,37 @@ public class CargaNotas extends javax.swing.JInternalFrame {
             modelo.removeRow(i);
         }
     }
-//    
-//    private void cargarDatos(){
-//        Alumno selec=(Alumno)jComboBox1.getSelectedItem();
-//          listaM = insData.obtenerMateriasCursadas(selec.getIdAlumno());
-//        for(Inscripcion i:listaM){
-//           modelo.addRow(new Object[]{i.getIdInscripcion(), i.getMateria(), i.getNota()});
-//        }
-//    }
+  
+
+    
+    private void cargarDatos() { 
+   
+    //creo una inscripcion
+        Inscripcion inscripcion = new Inscripcion();
+        
+        //creo unn alumno con lo que este seleccionado en el combo box
+        Alumno alumno = (Alumno) jComboBox1.getSelectedItem();
+        
+         borrarFilas();
+        //recorro las materias cursadas de ese alumno
+        for (Materia mate1 : insData.obtenerMateriasCursadas(alumno.getIdAlumno())) {
+            
+            //recorro las incripciones que coincidan el id del alumno
+            for (Inscripcion aux2 : insData.obtenerInscripcionesPorAlumno(alumno.getIdAlumno())) {
+                
+                //me fijo si las 2 materia son iguales 
+                if (aux2.getMateria().getIdMateria() == mate1.getIdMateria()) {
+                    
+                    //agrego a la tabla el idmateria el nombre y la nota
+                    modelo.addRow(new Object[]{
+                        mate1.getIdMateria(),
+                        mate1.getNombre(),
+                        aux2.getNota(),});
+                }
+            }
+        }
+    }
+
+    
+
 }
