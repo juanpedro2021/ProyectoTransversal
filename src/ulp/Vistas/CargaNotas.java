@@ -3,6 +3,7 @@ package ulp.Vistas;
 
 
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import ulp.AccesoADatos.AlumnoData;
 import ulp.AccesoADatos.InscripcionData;
@@ -54,6 +55,8 @@ public class CargaNotas extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jSalir = new javax.swing.JButton();
         jGuardar = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jNota = new javax.swing.JTextField();
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         jLabel1.setText("Carga de Notas");
@@ -93,6 +96,8 @@ public class CargaNotas extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel3.setText("Actualizar nota:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -109,15 +114,18 @@ public class CargaNotas extends javax.swing.JInternalFrame {
                 .addGap(39, 39, 39))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(17, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jGuardar)
-                        .addGap(48, 48, 48)
-                        .addComponent(jSalir)
-                        .addGap(43, 43, 43))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(23, 23, 23))))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jNota)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jGuardar)
+                .addGap(48, 48, 48)
+                .addComponent(jSalir)
+                .addGap(43, 43, 43))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,7 +140,9 @@ public class CargaNotas extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jSalir)
-                    .addComponent(jGuardar))
+                    .addComponent(jGuardar)
+                    .addComponent(jLabel3)
+                    .addComponent(jNota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -148,7 +158,8 @@ public class CargaNotas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jSalirActionPerformed
 
     private void jGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jGuardarActionPerformed
-        // TODO add your handling code here:
+  editarNota();
+ 
     }//GEN-LAST:event_jGuardarActionPerformed
 
 
@@ -157,6 +168,8 @@ public class CargaNotas extends javax.swing.JInternalFrame {
     private javax.swing.JButton jGuardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JTextField jNota;
     private javax.swing.JButton jSalir;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTInscripciones;
@@ -220,7 +233,28 @@ public class CargaNotas extends javax.swing.JInternalFrame {
             }
         }
     }
+private void editarNota(){
+    //selecciono una fila
+     int filaSeleccionada= jTInscripciones.getSelectedRow();
+     //busco idMateria
+    int idMateria = (Integer) jTInscripciones.getValueAt(filaSeleccionada, 0);
+    //tomo nota
+  //  double tomarNota = Double.parseDouble(jTInscripciones.getValueAt(filaSeleccionada, 2).toString());
 
+  double tomarNota= Double.parseDouble(jNota.getText());
+    //creo alumno y ubico su dni    
+    String[] alumno = jComboBox1.getSelectedItem().toString().split(", ");
+            int dniAlumno = Integer.parseInt(alumno[0]);
+            int idAlumno = alumData.buscarAlumnoPorDni(dniAlumno).getIdAlumno();
+    
+    
+     if (tomarNota < 0 || tomarNota > 10) {
+                JOptionPane.showMessageDialog(null, "La nota respeta un rango entre 0 y 10");
+            } else {
+                //Ejecuto la modificacion de la nota en la base de datos
+                insData.actualizarNota(idAlumno, idMateria, tomarNota);
+            }
+}
     
 
 }

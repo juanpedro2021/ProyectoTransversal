@@ -55,19 +55,19 @@ public class main {
 //        System.out.println(""+ messi.toString());
 
 //****************pruebo el metodo listarAlumnos*********
-AlumnoData alu= new AlumnoData();
+InscripcionData alu= new InscripcionData();
 
-for(Alumno alumno:alu.listarAlumnos() ){
-
-    System.out.println(alumno.getDni());
-    
-    System.out.println(alumno.getApellido());
-    
-    System.out.println(alumno.getNombre());
-    
-    System.out.println(alumno.getFechaNac());
-    
-    
+//for(Alumno alumno:alu.listarAlumnos() ){
+//
+//    System.out.println(alumno.getDni());
+//    
+//    System.out.println(alumno.getApellido());
+//    
+//    System.out.println(alumno.getNombre());
+//    
+//    System.out.println(alumno.getFechaNac());
+//    
+    alu.actualizarNota(8, 28, 1.0);
     
 
 }
@@ -76,4 +76,4 @@ for(Alumno alumno:alu.listarAlumnos() ){
 
 
     }
-}
+
