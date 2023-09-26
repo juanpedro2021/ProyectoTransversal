@@ -229,9 +229,9 @@ public class gestionAlumno extends javax.swing.JInternalFrame {
         bEstado.setSelected(encontrado.isActivo());
         
         
-        LocalDate fechaNacimientoLocalDate = encontrado.getFechaNac();
-        Date fechaNacimientoDate = Date.from(fechaNacimientoLocalDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        fechaN.setDate(fechaNacimientoDate);
+        LocalDate fechaNacLocalDate = encontrado.getFechaNac();
+        Date fechaNacDate = Date.from(fechaNacLocalDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        fechaN.setDate(fechaNacDate);
         
     }
 
