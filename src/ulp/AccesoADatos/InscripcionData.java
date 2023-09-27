@@ -213,7 +213,7 @@ public class InscripcionData {
                 + "FROM inscripcion i, alumno a WHERE i.idAlumno = a.idAlumno AND idMateria = ? AND a.estado = 1";
 
         try {
-            PreparedStatement ps = con.prepareCall(sql);
+            PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idMateria);
 
             ResultSet rs = ps.executeQuery();

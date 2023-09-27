@@ -126,7 +126,7 @@ public void modificarMateria (Materia materia) {
     
     public List<Materia> listarMaterias(){
  
-    String sql ="SELECT `idMateria`, `nombre`, `año`, `estado` FROM `materia` WHERE  estado=1";
+    String sql ="SELECT * FROM materia WHERE estado=1";
     
     ArrayList<Materia> materias = new ArrayList<>();
          
@@ -138,7 +138,7 @@ public void modificarMateria (Materia materia) {
          while (rs.next()) {
              
        Materia materia = new Materia();
-           materia.setIdMateria(rs.getInt("id"));
+           materia.setIdMateria(rs.getInt("idMateria"));
            materia.setNombre((rs.getString("nombre")));
            materia.setAñoMateria(rs.getInt("año"));
            materia.setActivo(true);
@@ -148,7 +148,7 @@ public void modificarMateria (Materia materia) {
          ps.close();
          
      } catch (SQLException ex) {
-         JOptionPane.showMessageDialog(null, "error al acceder a la tabla alumno"); 
+         JOptionPane.showMessageDialog(null, "error al acceder a la tabla materia"); 
      }
      return materias;
      

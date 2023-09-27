@@ -3,6 +3,10 @@ package ulp.Entidades;
 
 
 public class Inscripcion {
+
+    public static Iterable<Alumno> obtenerAlumnosporMateria(int codigo) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     private int idInscripcion;
     private Alumno alumno;
     private Materia materia;
