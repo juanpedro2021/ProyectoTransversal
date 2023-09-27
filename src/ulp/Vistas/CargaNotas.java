@@ -26,12 +26,12 @@ public class CargaNotas extends javax.swing.JInternalFrame {
         alumData = new AlumnoData();
         listaA = alumData.listarAlumnos();
         insData = new InscripcionData();
-//        listaM = insData.obtenerMateriasCursadas(WIDTH);
+
         modelo = new DefaultTableModel();
-        
+       
         cargarAlumnos();
         armarCabecera();
-//         borrarFilas();
+
         cargarDatos();
        
         

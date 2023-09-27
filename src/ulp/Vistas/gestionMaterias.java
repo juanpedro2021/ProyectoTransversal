@@ -179,7 +179,7 @@ public class gestionMaterias extends javax.swing.JInternalFrame {
         // y agrego toda la info que esta en lo grafico
       
         mateG.setNombre(nombre.getText());
-        mateG.setNombre(nivel.getText());
+        mateG.setAñoMateria(parseInt(nivel.getText()));
           if(bEstado.isSelected()!=false){
             
             mateG.setActivo(true);
