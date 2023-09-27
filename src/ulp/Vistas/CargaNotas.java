@@ -232,12 +232,13 @@ public class CargaNotas extends javax.swing.JInternalFrame {
         }
     }
 private void editarNota(){
+ try{
     //selecciono una fila
      int filaSeleccionada= jTInscripciones.getSelectedRow();
      //busco idMateria
     int idMateria = (Integer) jTInscripciones.getValueAt(filaSeleccionada, 0);
     //tomo nota
-  //  double tomarNota = Double.parseDouble(jTInscripciones.getValueAt(filaSeleccionada, 2).toString());
+//    double tomarNota = Double.parseDouble(jTInscripciones.getValueAt(filaSeleccionada, 2).toString());
 
   double tomarNota= Double.parseDouble(jNota.getText());
     //creo alumno y ubico su dni    
@@ -252,6 +253,12 @@ private void editarNota(){
                 //Ejecuto la modificacion de la nota en la base de datos
                 insData.actualizarNota(idAlumno, idMateria, tomarNota);
             }
+}catch(ArrayIndexOutOfBoundsException e){
+                        JOptionPane.showMessageDialog(null, "No a seleccionado ninguna fila.");
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error en tipo de dato. Intente nuevamente");
+        }
 }
     
 
