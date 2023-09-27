@@ -118,6 +118,11 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar1.add(jMenu5);
 
         jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ulpRecursos/BSalir.png"))); // NOI18N
+        jMenu6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu6MouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jMenu6);
 
         setJMenuBar(jMenuBar1);
@@ -139,6 +144,7 @@ public class Menu extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         
         escritorio.removeAll();
+        
         
         escritorio.repaint();
         
@@ -195,11 +201,17 @@ public class Menu extends javax.swing.JFrame {
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
+        
         escritorio.removeAll();
+        
         escritorio.repaint();
+        
         ConsultaAlumnosporMateria cApM = new ConsultaAlumnosporMateria();
+        
         cApM.setVisible(true);
+        
         escritorio.add(cApM);
+        
         escritorio.moveToFront(cApM);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
@@ -207,6 +219,10 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
       
     }//GEN-LAST:event_jMenu5ActionPerformed
+
+    private void jMenu6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu6MouseClicked
+       System.exit(0);
+    }//GEN-LAST:event_jMenu6MouseClicked
 
     /**
      * @param args the command line arguments

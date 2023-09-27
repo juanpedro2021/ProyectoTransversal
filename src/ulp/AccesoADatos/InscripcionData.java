@@ -33,7 +33,7 @@ public class InscripcionData {
         String sql = "INSERT INTO inscripcion (nota, idAlumno, idMateria)"
                 + " VALUES (?,?,?)";
         try {
-            System.out.println("entro al try");
+            
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             // pido los datos a el objeto INSCRIPCION **ins**
@@ -56,7 +56,7 @@ public class InscripcionData {
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla............ inscripcion" + ex.getMessage());
 
         }
     }
@@ -163,7 +163,7 @@ public class InscripcionData {
 	
 	ArrayList<Materia> materias = new ArrayList<>();
 	
-        String sql = "SELECT * FROM materia WHERE activo = 1 AND idMateria not in (SELECT idMateria FROM inscripcion WHERE idAlumno = ?)";
+        String sql = "SELECT * FROM materia WHERE estado = 1 AND idMateria not in (SELECT idMateria FROM inscripcion WHERE idAlumno = ?)";
         
 	try{		
 		PreparedStatement ps = (PreparedStatement) con.prepareStatement(sql);
@@ -220,6 +220,7 @@ public class InscripcionData {
             while (rs.next()) {
                 Alumno alumno = new Alumno();
                 alumno.setIdAlumno(rs.getInt("idAlumno"));
+                alumno.setDni(rs.getInt("dni"));
                 alumno.setApellido(rs.getString("apellido"));
                 alumno.setNombre(rs.getString("nombre"));
                 alumno.setFechaNac(rs.getDate("fechaNacimiento").toLocalDate());
