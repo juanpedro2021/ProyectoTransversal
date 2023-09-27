@@ -53,10 +53,10 @@ public class Menu extends javax.swing.JFrame {
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 423, Short.MAX_VALUE)
+            .addGap(0, 192, Short.MAX_VALUE)
         );
 
-        jMenu2.setText("Alumno");
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ulpRecursos/FAlumno.png"))); // NOI18N
 
         jMenuItem1.setText("Formulario de Alumno");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -68,7 +68,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setText("Materia");
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ulpRecursos/FMateria.png"))); // NOI18N
 
         jMenuItem2.setText("Formulario de Materia");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -80,7 +80,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
-        jMenu4.setText("Administracion");
+        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ulpRecursos/Finscripcion.png"))); // NOI18N
 
         jMenuItem3.setText("Manipulacion de Notas");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
@@ -100,7 +100,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu4);
 
-        jMenu5.setText("Consultas");
+        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ulpRecursos/consulta.png"))); // NOI18N
         jMenu5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenu5ActionPerformed(evt);
@@ -117,7 +117,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu5);
 
-        jMenu6.setText("salir");
+        jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ulpRecursos/BSalir.png"))); // NOI18N
         jMenuBar1.add(jMenu6);
 
         setJMenuBar(jMenuBar1);
